@@ -1,4 +1,4 @@
-from models import Pessoas
+from models import Pessoas, Usuarios
 
 # Método para inserir pessoas no bd
 def insere_pessoas():
@@ -39,11 +39,21 @@ def exclui_pessoa():
     pessoa = Pessoas.query.filter_by(nome='Fernando').first()
     pessoa.delete()
 
+def insere_usuario(login, senha):
+    usuario = Usuarios(login=login, senha=senha)
+    usuario.save()
+
+def consulta_todos_usuarios():
+    usuarios = Usuarios.query.all()
+    print(usuarios)
 
 if __name__ == '__main__':
-    insere_pessoas()
-    consulta()
-    consulta_filtrada()
-    consulta_pela_idade()
-    altera_pessoa()
-    exclui_pessoa()
+    insere_usuario('Fernando', '1234')
+    insere_usuario('Fernanda', '1234')
+    consulta_todos_usuarios()
+    #insere_pessoas()
+    #consulta()
+    #consulta_filtrada()
+    #consulta_pela_idade()
+    #altera_pessoa()
+    #exclui_pessoa()
